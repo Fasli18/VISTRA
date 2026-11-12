@@ -1,0 +1,57 @@
+name: VISTRA Auto Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: vistra-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.repository == 'Fasli18/VISTRA' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout VISTRA
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: Set isolated release path
+        run: printf 'RELEASE_DIR=%s/vistra-runtime\n' "$RUNNER_TEMP" >> "$GITHUB_ENV"
+
+      - name: Validate source allowlist
+        run: python3 tools/deploy_runtime.py validate-source
+
+      - name: Build isolated runtime package
+        run: python3 tools/build_release.py --output "$RELEASE_DIR"
+
+      - name: Validate package and syntax before upload
+        run: |
+          set -euo pipefail
+          python3 tools/deploy_runtime.py validate-release --release "$RELEASE_DIR"
+          command -v php
+          command -v node
+          while IFS= read -r -d '' file; do
+            php -n -l "$file"
+          done < <(find "$RELEASE_DIR" -type f -name '*.php' -print0)
+          while IFS= read -r -d '' file; do
+            node --check "$file"
+          done < <(find "$RELEASE_DIR" -type f -name '*.js' -print0)
+
+      # Credentials are exposed only to this step, after all build checks pass.
+      - name: Upload 22 runtime files to VISTRA htdocs (no deletion)
+        env:
+          VISTRA_FTP_HOST: ${{ secrets.VISTRA_FTP_HOST }}
+          VISTRA_FTP_USERNAME: ${{ secrets.VISTRA_FTP_USERNAME }}
+          VISTRA_FTP_PASSWORD: ${{ secrets.VISTRA_FTP_PASSWORD }}
+        run: python3 tools/deploy_runtime.py upload --release "$RELEASE_DIR"
