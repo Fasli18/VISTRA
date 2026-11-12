@@ -1,0 +1,21 @@
+# Apache 2.4 / shared hosting. Keep this file in the application root.
+Options -Indexes
+RewriteEngine On
+
+# Block private paths before any PHP handler runs. Rules work at / or /VISTRA/.
+RewriteRule (^|/)\.(?!well-known(?:/|$)) - [F,L,NC]
+RewriteRule ^(?:docs|deployment|tools|tests?|backups?|logs?|node_modules|vendor)(?:/|$) - [F,L,NC]
+RewriteRule ^backend/(?:php|migrations)(?:/|$) - [F,L,NC]
+RewriteRule ^backend/(?:check_n8n_temp|test_n8n|test|tesadmin)\.php(?:/|$) - [F,L,NC]
+
+<FilesMatch "(?i)(?:\.(?:sql|dump|sqlite3?|db|log|md|csv|json|txt|ini|conf|ya?ml|toml|env|bak|backup|old|orig|save|sw[op]|pem|key|p12|pfx|zip|tar|gz|bz2|xz|tgz|7z|rar|map|diff|patch|py|sh|cjs|inc|phps)|~)$|^(?:error_log|config(?:\.[^/]+)?\.php)$">
+    Require all denied
+</FilesMatch>
+
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    # Compatible with existing inline scripts/styles, charts and PDF popup.
+    Header always set Content-Security-Policy "object-src 'none'; base-uri 'self'; frame-ancestors 'self'"
+</IfModule>

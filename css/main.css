@@ -1,0 +1,1309 @@
+/* =========================================================
+   KOYOUMKM â€” DESAIN DASHBOARD
+   Tempel di bagian PALING BAWAH css/main.css
+   ========================================================= */
+
+/* 1. WARNA DAN DASAR TAMPILAN */
+
+#dashboard-app {
+  --sidebar-w: 240px;
+  --topbar-h: 76px;
+
+  --primary: #285de5;
+  --primary-light: #edf3ff;
+  --primary-dark: #204bc0;
+  --primary-deep: #142b4d;
+
+  --success: #128568;
+  --danger: #d84b59;
+  --warning: #df923c;
+
+  --koyo-bg: #f5f7fb;
+  --koyo-surface: #ffffff;
+  --koyo-ink: #192d49;
+  --koyo-muted: #718097;
+  --koyo-line: #e5ebf3;
+  --koyo-navy: #142b4d;
+  --koyo-orange: #ffba7a;
+
+  --radius: 18px;
+  --koyo-shadow: 0 5px 22px rgba(24, 47, 82, 0.045);
+
+  min-height: 100vh;
+  background: var(--koyo-bg);
+  color: var(--koyo-ink);
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+#dashboard-app *,
+#dashboard-app *::before,
+#dashboard-app *::after {
+  box-sizing: border-box;
+}
+
+#dashboard-app button,
+#dashboard-app input,
+#dashboard-app select,
+#dashboard-app textarea {
+  font: inherit;
+}
+
+#dashboard-app button {
+  cursor: pointer;
+}
+
+#dashboard-app button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+#dashboard-app :is(button, a, input, select, textarea):focus-visible {
+  outline: 3px solid #87a9ff;
+  outline-offset: 3px;
+}
+
+#dashboard-app :is(h1, h2, h3, h4) {
+  color: var(--koyo-ink);
+  letter-spacing: -0.035em;
+}
+
+#dashboard-app ::selection {
+  background: #dce7ff;
+  color: #142b4d;
+}
+
+/* 2. SIDEBAR */
+
+#dashboard-app #sidebar {
+  width: var(--sidebar-w);
+  background: var(--koyo-navy);
+  color: #dce5f4;
+  border-right: 0;
+  box-shadow: 8px 0 30px rgba(16, 35, 65, 0.05);
+}
+
+#dashboard-app .sidebar-logo {
+  min-height: 106px;
+  padding: 28px 24px 22px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+#dashboard-app .sidebar-logo .brand {
+  color: #ffffff;
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+#dashboard-app .sidebar-logo .tagline {
+  margin-top: 5px;
+  color: #a7b9d4;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+#dashboard-app .sidebar-nav {
+  padding: 22px 12px;
+  scrollbar-width: thin;
+  scrollbar-color: #476080 transparent;
+}
+
+#dashboard-app #sidebar .nav-item {
+  position: relative;
+  width: 100%;
+  min-height: 48px;
+  margin: 4px 0;
+  padding: 12px 14px;
+  gap: 12px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  color: #bdcbe0;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
+  text-decoration: none;
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+#dashboard-app #sidebar .nav-item svg {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+#dashboard-app #sidebar .nav-item:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: #ffffff;
+}
+
+#dashboard-app #sidebar .nav-item.active {
+  background: #ffffff;
+  color: #18365c;
+  border-color: #ffffff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  font-weight: 750;
+}
+
+#dashboard-app #sidebar .nav-item.active::before {
+  content: "";
+  position: absolute;
+  left: -12px;
+  top: 14px;
+  bottom: 14px;
+  width: 4px;
+  border-radius: 0 4px 4px 0;
+  background: var(--koyo-orange);
+}
+
+#dashboard-app .sidebar-footer {
+  padding: 14px 12px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+/* 3. TOPBAR */
+
+#dashboard-app #topbar {
+  height: var(--topbar-h);
+  padding: 0 30px;
+  gap: 18px;
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid var(--koyo-line);
+  box-shadow: none;
+}
+
+#dashboard-app .hamburger,
+#dashboard-app .icon-btn {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--koyo-line);
+  border-radius: 12px;
+  background: #ffffff;
+  color: #64758d;
+  transition: background 180ms ease;
+}
+
+#dashboard-app .hamburger:hover,
+#dashboard-app .icon-btn:hover {
+  background: var(--primary-light);
+}
+
+#dashboard-app .search-wrap {
+  width: min(340px, 40vw);
+  height: 43px;
+  padding: 0 14px;
+  gap: 10px;
+  border: 1px solid var(--koyo-line);
+  border-radius: 12px;
+  background: #f7f9fc;
+}
+
+#dashboard-app .search-wrap input {
+  width: 100%;
+  min-width: 0;
+  background: transparent;
+  color: var(--koyo-ink);
+  font-size: 12px;
+}
+
+#dashboard-app .search-wrap input::placeholder {
+  color: #8b97a9;
+}
+
+#dashboard-app .topbar-actions {
+  gap: 12px;
+}
+
+#dashboard-app .avatar {
+  width: 41px;
+  height: 41px;
+  border: 3px solid #eaf0fd;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+#dashboard-app .dropdown-menu {
+  padding: 7px;
+  border: 1px solid var(--koyo-line);
+  border-radius: 14px;
+  box-shadow: 0 16px 45px rgba(20, 43, 77, 0.14);
+}
+
+#dashboard-app .dropdown-menu :is(button, a) {
+  border-radius: 8px;
+}
+
+/* 4. AREA KONTEN DAN JUDUL */
+
+#dashboard-app #main {
+  min-height: calc(100vh - var(--topbar-h));
+  padding: 30px;
+  background:
+    radial-gradient(
+      ellipse at top right,
+      rgba(222, 232, 255, 0.35),
+      transparent 46%
+    ),
+    var(--koyo-bg);
+}
+
+#dashboard-app .page {
+  min-width: 0;
+}
+
+#dashboard-app .page-header {
+  margin-bottom: 25px;
+}
+
+#dashboard-app .page-header h1 {
+  margin: 0 0 8px;
+  font-size: clamp(24px, 2.4vw, 32px);
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+#dashboard-app .page-header p {
+  max-width: 760px;
+  color: var(--koyo-muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+#dashboard-app .page-header-row {
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+#dashboard-app .welcome-bar {
+  position: relative;
+  overflow: hidden;
+  min-height: 108px;
+  margin-bottom: 24px;
+  padding: 25px 28px;
+  border: 1px solid #dde6f5;
+  border-radius: 20px;
+  background: linear-gradient(110deg, #ffffff, #edf3ff);
+  box-shadow: var(--koyo-shadow);
+}
+
+#dashboard-app .welcome-bar::before {
+  content: "";
+  position: absolute;
+  top: 24px;
+  bottom: 24px;
+  left: 0;
+  width: 5px;
+  border-radius: 0 5px 5px 0;
+  background: var(--koyo-orange);
+}
+
+#dashboard-app .welcome-bar h2 {
+  margin-bottom: 6px;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+#dashboard-app .welcome-bar p {
+  color: var(--koyo-muted);
+  font-size: 12px;
+}
+
+/* 5. KARTU UMUM */
+
+#dashboard-app :is(
+  .card,
+  .chart-card,
+  .stat-card,
+  .factor-card,
+  .spider-card,
+  .outlier-card,
+  .box-card,
+  .factor-bar-card,
+  .performer-card,
+  .form-section,
+  .live-calc
+) {
+  min-width: 0;
+  border: 1px solid var(--koyo-line);
+  border-radius: var(--radius);
+  background: var(--koyo-surface);
+  box-shadow: var(--koyo-shadow);
+}
+
+#dashboard-app :is(.card, .chart-card) {
+  padding: 24px;
+}
+
+#dashboard-app .card h3,
+#dashboard-app .chart-title {
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+#dashboard-app .chart-sub {
+  margin-top: 5px;
+  color: var(--koyo-muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+#dashboard-app .chart-header {
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+/* 6. STATISTIK BERANDA */
+
+#dashboard-app .stats-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+#dashboard-app .stat-card {
+  position: relative;
+  min-height: 148px;
+  padding: 23px;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+#dashboard-app .stat-label {
+  margin-bottom: 12px;
+  color: #718097;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+#dashboard-app .stat-value {
+  color: var(--koyo-ink);
+  font-size: clamp(27px, 2.5vw, 37px);
+  font-weight: 800;
+  letter-spacing: -1.4px;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+
+#dashboard-app .stat-sub {
+  margin-top: 10px;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+#dashboard-app .stat-sub.up {
+  color: var(--success);
+}
+
+#dashboard-app .stat-sub.gray {
+  color: var(--koyo-muted);
+}
+
+#dashboard-app .stat-icon {
+  width: 43px;
+  height: 43px;
+  flex-shrink: 0;
+  border-radius: 13px;
+}
+
+#dashboard-app .stat-icon.blue {
+  background: #edf3ff;
+  color: #285de5;
+}
+
+#dashboard-app .stat-icon.green {
+  background: #e8f6ef;
+  color: #128568;
+}
+
+#dashboard-app .stat-icon.orange {
+  background: #fff3e7;
+  color: #cb822e;
+}
+
+#dashboard-app .stat-icon.red {
+  background: #fff0f1;
+  color: #d84b59;
+}
+
+#dashboard-app .stat-card.danger-border {
+  border-left: 1px solid var(--koyo-line);
+  border-top: 3px solid #e89a9f;
+}
+
+/* 7. GRAFIK DAN LEGENDA */
+
+#dashboard-app .charts-grid {
+  grid-template-columns: minmax(270px, 0.8fr) minmax(0, 1.6fr);
+  gap: 22px;
+  margin-bottom: 24px;
+}
+
+#dashboard-app .donut-wrap {
+  width: 190px;
+  height: 190px;
+  margin: 26px auto;
+}
+
+#dashboard-app .donut-center .big {
+  color: var(--koyo-ink);
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+#dashboard-app .donut-center .small {
+  margin-top: 3px;
+  color: var(--koyo-muted);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+}
+
+#dashboard-app .legend {
+  gap: 13px 10px;
+  padding-top: 18px;
+  border-top: 1px solid #eef2f7;
+}
+
+#dashboard-app .legend-item {
+  gap: 8px;
+  color: #67768a;
+  font-size: 11px;
+}
+
+#dashboard-app .legend-dot {
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
+}
+
+#dashboard-app .toggle-btns {
+  padding: 4px;
+  gap: 3px;
+  border: 1px solid var(--koyo-line);
+  border-radius: 10px;
+  background: #f6f8fc;
+}
+
+#dashboard-app .toggle-btn {
+  padding: 7px 10px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #738199;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+#dashboard-app .toggle-btn.active {
+  background: #ffffff;
+  color: var(--primary);
+  box-shadow: 0 2px 7px rgba(27, 49, 84, 0.09);
+}
+
+/* 8. TOMBOL */
+
+#dashboard-app :is(
+  .btn-primary,
+  .btn-dark,
+  .btn-secondary,
+  .btn-filter,
+  .btn-export,
+  .btn-dropdown
+) {
+  min-height: 41px;
+  padding: 10px 17px;
+  border-radius: 11px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+  transition:
+    background 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+#dashboard-app :is(.btn-primary, .btn-dark, .btn-dropdown) {
+  border: 1px solid transparent;
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(40, 93, 229, 0.12);
+}
+
+#dashboard-app :is(.btn-primary, .btn-dark, .btn-dropdown):hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+#dashboard-app :is(.btn-secondary, .btn-filter, .btn-export) {
+  border: 1px solid #dce4ef;
+  background: #ffffff;
+  color: #435978;
+  box-shadow: none;
+}
+
+#dashboard-app :is(.btn-secondary, .btn-filter, .btn-export):hover {
+  border-color: #c1d2f6;
+  background: #f3f7ff;
+}
+
+/* 9. PROFIL FAKTOR */
+
+#dashboard-app .factor-grid {
+  gap: 22px;
+  margin-bottom: 24px;
+}
+
+#dashboard-app .factor-cards {
+  gap: 16px;
+}
+
+#dashboard-app .factor-card {
+  padding: 20px;
+}
+
+#dashboard-app .factor-card-header {
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+#dashboard-app .factor-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+}
+
+#dashboard-app .factor-name {
+  color: #718097;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+#dashboard-app .factor-score {
+  margin: 8px 0;
+  color: var(--koyo-ink);
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+#dashboard-app .factor-badge {
+  padding: 4px 8px;
+  border-radius: 7px;
+  font-size: 10px;
+}
+
+#dashboard-app .factor-dev {
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+#dashboard-app .exec-grid,
+#dashboard-app .insight-grid {
+  gap: 18px;
+  margin-top: 22px;
+}
+
+#dashboard-app .exec-text {
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+#dashboard-app .priority-box,
+#dashboard-app .strength-box {
+  padding: 18px;
+  border-radius: 13px;
+  line-height: 1.8;
+}
+
+#dashboard-app .priority-box {
+  border: 1px solid #f4dfe1;
+  background: #fff5f5;
+}
+
+#dashboard-app .strength-box {
+  border: 1px solid #d8ece2;
+  background: #eef8f2;
+}
+
+#dashboard-app .consult-card,
+#dashboard-app .guide-card {
+  padding: 24px;
+  border: 0;
+  border-radius: 18px;
+  background: var(--koyo-navy);
+  color: #d6e2f3;
+  box-shadow: var(--koyo-shadow);
+}
+
+#dashboard-app :is(.consult-card, .guide-card) :is(h2, h3, h4) {
+  color: #ffffff;
+}
+
+#dashboard-app .btn-consult {
+  padding: 11px 16px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--koyo-orange);
+  color: #25334b;
+  font-weight: 750;
+}
+
+/* 10. DISTRIBUSI DAN PERBANDINGAN */
+
+#dashboard-app .dist-grid,
+#dashboard-app .comparison-grid,
+#dashboard-app .comp-bottom-grid {
+  gap: 22px;
+  margin-bottom: 24px;
+}
+
+#dashboard-app .quartile-grid {
+  gap: 14px;
+}
+
+#dashboard-app .quartile-grid > div {
+  padding: 17px;
+  border: 1px solid var(--koyo-line);
+  border-radius: 13px;
+  background: #f8faff;
+}
+
+#dashboard-app .outlier-card,
+#dashboard-app .box-card,
+#dashboard-app .factor-bar-card,
+#dashboard-app .performer-card {
+  padding: 24px;
+}
+
+/* 11. TABEL UMKM */
+
+#dashboard-app .data-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 12px;
+}
+
+#dashboard-app .data-table th {
+  padding: 15px 16px;
+  border-bottom: 1px solid var(--koyo-line);
+  background: #f6f8fc;
+  color: #6c7c92;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.05em;
+  text-align: left;
+}
+
+#dashboard-app .data-table th:first-child {
+  border-radius: 10px 0 0 10px;
+}
+
+#dashboard-app .data-table th:last-child {
+  border-radius: 0 10px 10px 0;
+}
+
+#dashboard-app .data-table td {
+  padding: 17px 16px;
+  border-bottom: 1px solid #edf1f6;
+  color: #43536b;
+  vertical-align: middle;
+}
+
+#dashboard-app .data-table tbody tr:hover {
+  background: #f8faff;
+}
+
+#dashboard-app .data-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+#dashboard-app .sector-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 9px;
+  border: 1px solid #e2e9f4;
+  border-radius: 7px;
+  background: #f4f7fc;
+  color: #526783;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+#dashboard-app .health-score {
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+#dashboard-app .pagination {
+  gap: 7px;
+  padding-top: 18px;
+  flex-wrap: wrap;
+}
+
+#dashboard-app .page-btn {
+  min-width: 35px;
+  height: 35px;
+  border: 1px solid var(--koyo-line);
+  border-radius: 9px;
+  background: #ffffff;
+  color: #64748b;
+}
+
+#dashboard-app .page-btn.active {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: #ffffff;
+}
+
+#dashboard-app .table-stats {
+  margin-top: 20px;
+  border: 1px solid var(--koyo-line);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+#dashboard-app .table-stat {
+  padding: 20px;
+}
+
+/* 12. FORMULIR EVALUASI */
+
+#dashboard-app .form-grid {
+  grid-template-columns: minmax(0, 1fr) 290px;
+  gap: 24px;
+  align-items: start;
+}
+
+#dashboard-app .form-main {
+  gap: 22px;
+  min-width: 0;
+}
+
+#dashboard-app .form-section {
+  padding: 25px;
+  overflow: hidden;
+}
+
+#dashboard-app .section-header {
+  gap: 13px;
+  margin-bottom: 12px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--koyo-line);
+}
+
+#dashboard-app .section-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 13px;
+}
+
+#dashboard-app .section-title {
+  color: var(--koyo-ink);
+  font-size: 15px;
+  font-weight: 800;
+}
+
+#dashboard-app .section-sub {
+  margin-top: 4px;
+  color: var(--koyo-muted);
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+#dashboard-app .form-row {
+  gap: 18px;
+  padding: 17px 0;
+  border-bottom: 1px solid #eff3f8;
+}
+
+#dashboard-app .form-row:last-child {
+  border-bottom: 0;
+}
+
+#dashboard-app .form-label {
+  color: #42536c;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+#dashboard-app .likert-radio {
+  gap: 9px;
+}
+
+#dashboard-app .likert-radio label,
+#dashboard-app .scale-dot {
+  width: 27px;
+  height: 27px;
+  border: 2px solid #d8e1ee;
+  background: #ffffff;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+#dashboard-app .likert-radio label:hover,
+#dashboard-app .scale-dot:hover {
+  border-color: #8aa9ee;
+  background: #edf3ff;
+}
+
+#dashboard-app .likert-radio input:checked + label,
+#dashboard-app .scale-dot.active {
+  border-color: var(--primary);
+  background: var(--primary);
+  box-shadow: 0 0 0 3px #edf3ff;
+}
+
+#dashboard-app .live-calc {
+  top: calc(var(--topbar-h) + 20px);
+  max-height: calc(100vh - var(--topbar-h) - 40px);
+  padding: 24px;
+  border-top: 4px solid var(--primary);
+}
+
+#dashboard-app .live-badge {
+  margin-bottom: 24px;
+  color: var(--primary);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+#dashboard-app .calc-row {
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+#dashboard-app .calc-label {
+  color: #65758b;
+  font-size: 11px;
+}
+
+#dashboard-app .calc-val {
+  font-size: 13px;
+  font-weight: 800;
+}
+
+#dashboard-app .calc-bar {
+  height: 6px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  background: #edf1f7;
+  overflow: hidden;
+}
+
+#dashboard-app .calc-bar-fill {
+  height: 100%;
+  border-radius: inherit;
+}
+
+#dashboard-app .health-category {
+  margin: 22px 0;
+  padding: 20px 12px;
+  border: 1px solid #e5edf8;
+  border-radius: 13px;
+  background: #f7faff;
+}
+
+#dashboard-app .health-cat-label {
+  color: #7a889b;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+}
+
+#dashboard-app .health-cat-val {
+  margin: 8px 0;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+#dashboard-app .health-cat-sub {
+  color: var(--koyo-muted);
+  font-size: 11px;
+}
+
+/* Input umum, termasuk profil dan formulir */
+
+#dashboard-app input:not([type="radio"]):not([type="checkbox"]),
+#dashboard-app select,
+#dashboard-app textarea {
+  max-width: 100%;
+  border: 1px solid #dfe6f0;
+  border-radius: 11px;
+  background: #f9fbfe;
+  color: var(--koyo-ink);
+}
+
+#dashboard-app .search-wrap input {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+#dashboard-app input:not([type="radio"]):not([type="checkbox"]):focus,
+#dashboard-app select:focus,
+#dashboard-app textarea:focus {
+  border-color: #8aa9ee;
+}
+
+#dashboard-app input[type="checkbox"],
+#dashboard-app input[type="radio"] {
+  accent-color: var(--primary);
+}
+
+/* 13. BANTUAN */
+
+#dashboard-app .help-top-section {
+  padding-bottom: 32px;
+  border: 1px solid #dfe8f8;
+  border-radius: 20px;
+  background: linear-gradient(115deg, #ffffff, #edf3ff);
+  overflow: hidden;
+}
+
+#dashboard-app .help-hero {
+  max-width: 800px;
+  padding: 35px 30px 0;
+}
+
+#dashboard-app .help-hero-title {
+  color: var(--koyo-ink);
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+#dashboard-app .help-popular-search {
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+#dashboard-app .help-cards-section {
+  padding: 30px 0;
+  background: transparent;
+}
+
+#dashboard-app .help-cards-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+#dashboard-app .help-card {
+  padding: 23px;
+  border: 1px solid var(--koyo-line);
+  border-radius: 17px;
+  background: #ffffff;
+  box-shadow: var(--koyo-shadow);
+}
+
+#dashboard-app .help-card h4 {
+  margin-bottom: 9px;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+#dashboard-app .help-card p {
+  color: var(--koyo-muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+#dashboard-app .help-bottom-section {
+  padding: 28px;
+  border: 1px solid var(--koyo-line);
+  border-radius: 20px;
+  background: #ffffff;
+}
+
+#dashboard-app .help-bottom-grid {
+  gap: 30px;
+}
+
+/* 14. NOTIFIKASI DAN FOOTER */
+
+#dashboard-app .notif-item {
+  margin-bottom: 12px;
+  padding: 20px;
+  border: 1px solid var(--koyo-line);
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+#dashboard-app .notif-header {
+  gap: 15px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+#dashboard-app .page-footer {
+  gap: 14px;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--koyo-line);
+  color: #8793a5;
+  font-size: 10px;
+  flex-wrap: wrap;
+}
+
+/* 15. RESPONSIF */
+
+@media (min-width: 1600px) {
+  #dashboard-app #main {
+    padding: 36px 40px;
+  }
+
+  #dashboard-app .charts-grid {
+    grid-template-columns: minmax(320px, 0.75fr) minmax(0, 1.7fr);
+  }
+}
+
+@media (max-width: 1250px) {
+  #dashboard-app .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #dashboard-app .charts-grid,
+  #dashboard-app .factor-grid,
+  #dashboard-app .comparison-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #dashboard-app .form-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #dashboard-app .live-calc {
+    position: static;
+    max-height: none;
+  }
+
+  #dashboard-app .help-cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  #dashboard-app #main {
+    padding: 22px;
+  }
+
+  #dashboard-app #topbar {
+    padding-right: 20px;
+    padding-left: 20px;
+    gap: 12px;
+  }
+
+  #dashboard-app .welcome-bar {
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 22px;
+  }
+
+  #dashboard-app .welcome-bar h2 {
+    font-size: 19px;
+  }
+
+  #dashboard-app .factor-cards,
+  #dashboard-app .exec-grid,
+  #dashboard-app .insight-grid,
+  #dashboard-app .comp-bottom-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #dashboard-app .help-bottom-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  #dashboard-app {
+    --topbar-h: 66px;
+  }
+
+  #dashboard-app #main {
+    padding: 16px;
+  }
+
+  #dashboard-app #topbar {
+    padding: 0 14px;
+    gap: 10px;
+  }
+
+  #dashboard-app .search-wrap {
+    width: auto;
+    min-width: 0;
+    flex: 1;
+  }
+
+  #dashboard-app .topbar-actions {
+    gap: 7px;
+  }
+
+  #dashboard-app .stats-grid,
+  #dashboard-app .factor-cards,
+  #dashboard-app .quartile-grid,
+  #dashboard-app .help-cards-grid,
+  #dashboard-app .table-stats {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #dashboard-app .stat-card {
+    min-height: 130px;
+    padding: 20px;
+  }
+
+  #dashboard-app :is(
+    .card,
+    .chart-card,
+    .form-section,
+    .spider-card,
+    .outlier-card,
+    .box-card,
+    .factor-bar-card,
+    .performer-card
+  ) {
+    padding: 18px;
+    border-radius: 15px;
+  }
+
+  #dashboard-app .welcome-bar {
+    padding: 20px;
+  }
+
+  #dashboard-app .welcome-bar .ml-auto {
+    margin-left: 0;
+  }
+
+  #dashboard-app .form-row {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  #dashboard-app .form-label {
+    flex-basis: 100%;
+    min-width: 0;
+  }
+
+  #dashboard-app .likert-radio {
+    gap: 12px;
+  }
+
+  #dashboard-app .likert-radio label,
+  #dashboard-app .scale-dot {
+    width: 29px;
+    height: 29px;
+  }
+
+  #dashboard-app .data-table th,
+  #dashboard-app .data-table td {
+    padding: 12px 10px;
+  }
+
+  #dashboard-app .help-hero {
+    padding: 25px 20px 0;
+  }
+
+  #dashboard-app .help-bottom-section {
+    padding: 20px;
+  }
+
+  #dashboard-app .page-header h1 {
+    font-size: 24px;
+  }
+}
+
+/* Hormati pengaturan pengurangan animasi perangkat */
+
+@media (prefers-reduced-motion: reduce) {
+  #dashboard-app *,
+  #dashboard-app *::before,
+  #dashboard-app *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Rata tengah kolom Skor Kesehatan */
+#dashboard-app .data-table th:nth-child(6),
+#dashboard-app .data-table td:nth-child(6) {
+    text-align: center;
+    vertical-align: middle;
+}
+/* =========================================================
+   KOYOUMKM PLATFORM ADMIN 3.1
+   Styles scoped to the Platform Admin workspace.
+   ========================================================= */
+#dashboard-app .admin-nav-caption{display:block}
+#dashboard-app #platformAdminNavGroup{width:100%}
+#dashboard-app #platformAdminNavGroup .nav-item{display:flex!important;align-items:center;gap:12px;width:100%;min-height:44px;padding:11px 13px;margin:3px 0;border:0;border-radius:11px;background:transparent;color:#bec7de;font:600 12px/1.4 inherit;text-align:left;cursor:pointer}
+#dashboard-app #platformAdminNavGroup .nav-item:hover{background:#ffffff12;color:#fff}
+#dashboard-app #platformAdminNavGroup .nav-item.active{background:linear-gradient(100deg,#7662dc,#5d50b6);color:#fff;box-shadow:0 7px 18px #0002}
+#dashboard-app #platformAdminNavGroup .nav-item svg{width:18px;height:18px;flex:0 0 18px}
+#dashboard-app .kadmin-wrap{max-width:1500px;margin:0 auto;padding:30px 30px 48px;color:#27314f}
+#dashboard-app .kadmin-hero{position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:190px;padding:32px 36px;margin-bottom:18px;overflow:hidden;border-radius:24px;background:linear-gradient(110deg,#202847 0%,#37366f 62%,#6552c9 100%);color:#fff;box-shadow:0 16px 35px #34356b20}
+#dashboard-app .kadmin-hero:after{content:"";position:absolute;width:260px;height:260px;right:9%;top:-175px;border:34px solid #ffffff12;border-radius:50%;pointer-events:none}
+#dashboard-app .kadmin-hero h1{margin:10px 0 8px;color:#fff;font-size:clamp(25px,3vw,36px);font-weight:850;letter-spacing:-1.5px}
+#dashboard-app .kadmin-hero h1 span{color:#c6bcff}
+#dashboard-app .kadmin-hero p{margin:0;color:#d6d9ee;font-size:13px}
+#dashboard-app .kadmin-eyebrow,#dashboard-app .kadmin-kicker{font-size:9px;font-weight:850;letter-spacing:1.7px;color:#8878f4}
+#dashboard-app .kadmin-hero .kadmin-eyebrow{color:#c6c3ff}
+#dashboard-app .kadmin-live{display:flex;align-items:center;gap:8px;margin-top:18px;color:#e4e5f5;font-size:11px;font-weight:700}
+#dashboard-app .kadmin-live i{width:8px;height:8px;border-radius:50%;background:#50d6ad;box-shadow:0 0 0 5px #50d6ad22}
+#dashboard-app .kadmin-refresh{position:relative;z-index:1;flex:0 0 auto;padding:12px 16px;border:1px solid #ffffff55;border-radius:12px;background:#ffffff18;color:#fff;font-size:12px;font-weight:800}
+#dashboard-app .kadmin-refresh:hover{background:#ffffff2b}
+#dashboard-app .kadmin-notice{padding:12px 16px;margin-bottom:16px;border:1px solid #e3e7f2;border-radius:12px;background:#ffffff;color:#71809f;font-size:12px}
+#dashboard-app .kadmin-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:20px}
+#dashboard-app .kadmin-stat{position:relative;min-height:125px;padding:19px 20px;border:1px solid #e5e9f3;border-radius:17px;background:#fff;box-shadow:0 5px 22px #182f5208;overflow:hidden}
+#dashboard-app .kadmin-stat:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:#7561e8}
+#dashboard-app .kadmin-stat.tone-1:before{background:#16a77e}#dashboard-app .kadmin-stat.tone-2:before{background:#4384e8}#dashboard-app .kadmin-stat.tone-3:before{background:#e69a43}#dashboard-app .kadmin-stat.tone-4:before{background:#52658e}
+#dashboard-app .kadmin-stat-label{color:#8190ad;font-size:11px;font-weight:750}
+#dashboard-app .kadmin-stat-value{margin-top:10px;color:#293352;font-size:30px;font-weight:850;letter-spacing:-1px;line-height:1.15}
+#dashboard-app .kadmin-stat small{display:block;margin-top:7px;color:#9aa5ba;font-size:10px}
+#dashboard-app .kadmin-grid{display:grid;grid-template-columns:1fr;gap:18px}
+#dashboard-app .kadmin-panel{min-width:0;padding:24px;border:1px solid #e5e9f3;border-radius:19px;background:#fff;box-shadow:0 5px 22px #182f5208}
+#dashboard-app .kadmin-panel h2{margin:7px 0 5px;color:#293352;font-size:17px;font-weight:850;letter-spacing:-.5px}
+#dashboard-app .kadmin-panel>p,#dashboard-app .kadmin-pagehead p{margin:0 0 17px;color:#8996b0;font-size:11px}
+#dashboard-app .kadmin-tools{display:flex;justify-content:flex-end;margin:14px 0}
+#dashboard-app .kadmin-tools input{width:min(360px,100%);padding:11px 13px;border:1px solid #e2e7f1;border-radius:11px;background:#f8f9fc;color:#34415f;font:inherit;font-size:12px}
+#dashboard-app .kadmin-table-wrap{width:100%;overflow:auto}
+#dashboard-app .kadmin-table-wrap table{width:100%;min-width:680px;border-collapse:collapse}
+#dashboard-app .kadmin-table-wrap th{padding:13px 14px;background:#f6f7fb;color:#8290ad;font-size:9px;font-weight:850;letter-spacing:.6px;text-align:left;text-transform:uppercase}
+#dashboard-app .kadmin-table-wrap td{padding:14px;border-bottom:1px solid #edf0f6;color:#596783;font-size:11px;vertical-align:middle}
+#dashboard-app .kadmin-table-wrap td strong{color:#2d3859;font-weight:800}
+#dashboard-app .kadmin-pill{display:inline-flex;padding:5px 9px;border-radius:20px;font-size:10px;font-weight:800}
+#dashboard-app .kadmin-pill.ok{background:#e7f7f1;color:#0d9069}#dashboard-app .kadmin-pill.warn{background:#fff4e2;color:#b8791e}
+#dashboard-app .kadmin-pagehead{margin-bottom:20px}
+#dashboard-app .kadmin-pagehead h1{margin:7px 0;color:#293352;font-size:29px;font-weight:850;letter-spacing:-1px}
+#dashboard-app .kadmin-empty,#dashboard-app .kadmin-muted{padding:18px;color:#8996b0;font-size:12px;line-height:1.7}
+#dashboard-app .kadmin-stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:10px 0 18px}
+#dashboard-app .kadmin-stat-grid>div{padding:18px;border:1px solid #e8ebf4;border-radius:13px;background:#fafbfe}
+#dashboard-app .kadmin-stat-grid small{display:block;color:#8793ad;font-size:11px}
+#dashboard-app .kadmin-stat-grid strong{display:block;margin-top:8px;color:#293352;font-size:25px}
+#dashboard-app .kadmin-factor-list{display:grid;gap:15px;margin-top:20px}
+#dashboard-app .kadmin-factor-list>div>div{display:flex;justify-content:space-between;gap:12px;color:#596783;font-size:11px}
+#dashboard-app .kadmin-factor-list strong{color:#5e50c8}
+#dashboard-app .kadmin-factor-list>div>span{display:block;height:8px;margin-top:8px;border-radius:20px;background:#edf0f7;overflow:hidden}
+#dashboard-app .kadmin-factor-list i{display:block;height:100%;border-radius:20px;background:linear-gradient(90deg,#9988f5,#6552d0)}
+#dashboard-app .kadmin-export{margin-top:20px;padding:10px 14px;border:0;border-radius:10px;background:#eeeaff;color:#6552d0;font-size:11px;font-weight:800;cursor:pointer}
+@media(max-width:1050px){#dashboard-app .kadmin-stats{grid-template-columns:repeat(2,minmax(0,1fr))}#dashboard-app .kadmin-wrap{padding:24px 20px 40px}}
+@media(max-width:650px){#dashboard-app .kadmin-wrap{padding:18px 13px 32px}#dashboard-app .kadmin-hero{align-items:flex-start;flex-direction:column;padding:25px 22px}#dashboard-app .kadmin-refresh{align-self:flex-start}#dashboard-app .kadmin-stats{gap:9px}#dashboard-app .kadmin-stat{min-height:110px;padding:15px}#dashboard-app .kadmin-stat-value{font-size:25px}#dashboard-app .kadmin-panel{padding:17px}#dashboard-app .kadmin-stat-grid{grid-template-columns:1fr}}

@@ -1,0 +1,23 @@
+# Upload only this runtime allowlist, then create private config.php separately.
+.htaccess
+index.html
+css/auth.css
+css/main.css
+css/vistra-midnight.css
+css/vistra-workspace.css
+js/api-umkm.js
+js/api.js
+js/auth.js
+js/feedback-popup.js
+js/form.js
+js/invitations.js
+js/main.js
+js/vistra-theme.js
+js/vistra-workspace.js
+backend/.htaccess
+backend/api.php
+backend/admin.php
+backend/php/.htaccess
+backend/php/db.php
+backend/php/validator.php
+backend/php/security.php

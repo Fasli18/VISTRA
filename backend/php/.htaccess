@@ -1,0 +1,2 @@
+# PHP includes remain readable by PHP; direct HTTP access is forbidden.
+Require all denied

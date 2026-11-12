@@ -1,0 +1,6 @@
+# Teruskan header Authorization agar token Bearer dapat dibaca PHP.
+RewriteEngine On
+RewriteRule ^(?:php|migrations)(?:/|$) - [F,L,NC]
+RewriteRule ^(?:check_n8n_temp|test_n8n|test|tesadmin)\.php(?:/|$) - [F,L,NC]
+RewriteCond %{HTTP:Authorization} ^(.*)
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%1]
